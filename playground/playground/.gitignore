@@ -11,3 +11,6 @@ __pycache__/
 
 # Secrets
 .env
+
+# Vector database (rebuilt by ingest)
+qdrant_data/
