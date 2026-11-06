@@ -59,12 +59,12 @@ llm = init_chat_model(
 query = input("You: ").strip()
 
 # Retrieve
-retrieved_docs = vector_store.similarity_search(query, k=3) # Documents
+retrieved_docs = vector_store.similarity_search(query, k=TOP_K) # Documents
 context = "\n\n".join(d.page_content for d in retrieved_docs) # string object
 
 # Generate
 messages = [
-    {"role": "system", "content": "You are a helpful Clause Shop assistant. Answer only from the provided context. If the answer is not in the context, say you don't know."},
+    {"role": "system", "content": SYSTEM_PROMPT},
     {"role": "user", "content": f"Context: {context}\n\nQuestion: {query}"}
 ]
 print("AI: ", llm.invoke(messages).text)
